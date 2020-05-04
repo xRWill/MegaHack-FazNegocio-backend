@@ -11,10 +11,10 @@ class AuthController {
    * @param {Response} ctx.response
    */
   async register({request}){
- const data = request.only(['name', 'email', 'password'])
- const user = await User.create(data)
+    const data = request.only(['name', 'email', 'password', 'cellphone'])
+    console.log(request, data)
+    const user = await User.create(data)
     return user
-
   }
 
   async authenticate({request, auth}){
@@ -22,7 +22,7 @@ class AuthController {
 
     const token = await auth.attempt(email,password)
 
-    return {user: {name:"teste", email:"teste@faznegocio.com.br" }, ...token}
+    return {user: {name:"Usuário", email:"usuario@faznegocio.com.br" }, ...token}
   }
 }
 
